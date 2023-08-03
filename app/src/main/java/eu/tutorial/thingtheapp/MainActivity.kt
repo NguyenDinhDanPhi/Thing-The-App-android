@@ -30,8 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import eu.tutorial.thingtheapp.Screen.UserViewModel
-import eu.tutorial.thingtheapp.ui.theme.Orange
+
 import eu.tutorial.thingtheapp.ui.theme.ThingTheAppTheme
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -43,7 +42,6 @@ class MainActivity : ComponentActivity() {
                 val stringArray = arrayOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10")
 
                    MainContent(stringArray = stringArray)
-             //   TestHome()
             }
         }
     }
