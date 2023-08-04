@@ -19,9 +19,12 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import eu.tutorial.thingtheapp.Model.User
 import eu.tutorial.thingtheapp.Network.ApiRepository
 
@@ -36,33 +39,46 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun MainContent() {
+    ListOfUser()
+}
+
+
+@Composable
+fun ListOfUser() {
     val apiRepo = ApiRepository()
     val user = produceState<List<User>>(initialValue = emptyList(), producer = {
         value = apiRepo.getAllUser()
     } )
-   Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-       LazyColumn(modifier = Modifier
-           .height(400.dp)
-           .width(250.dp)) {
-           items(user.value) {item ->
-               Surface(modifier = Modifier
-                   .fillMaxSize(),
-                   color = Color(0xFFFFA500), shape = RoundedCornerShape(10.dp)
-               ) {
-                   Text(item.login, modifier = Modifier.padding(10.dp), textAlign = TextAlign.Center)
-               }
-               Spacer(modifier = Modifier.height(10.dp))
-           }
-       }
-   }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        LazyColumn(modifier = Modifier
+            .height(400.dp)
+            .width(250.dp)) {
+            items(user.value) {item ->
+                Surface(modifier = Modifier
+                    .fillMaxSize(),
+                    color = Color(0xFFFFA500), shape = RoundedCornerShape(9.dp)
+                ) {
+                    Text(item.login, modifier = Modifier
+                        .padding(12.dp),
+                        textAlign = TextAlign.Center,
+                        style = TextStyle(
+                            fontSize = 20.sp, // Kích thước chữ (24sp)
+                            color = Color.White, // Màu chữ
+                            fontWeight = FontWeight.SemiBold // Trọng lượng chữ (in đậm)
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+            }
+        }
+    }
 }
 
-
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun GreetingPreview() {
-    ThingTheAppTheme {
-    }
+fun TopHeader() {
+    
 }
