@@ -92,9 +92,9 @@ fun ListOfUser(modifier: Modifier) {
                                 .padding(15.dp),
                             textAlign = TextAlign.Center,
                             style = TextStyle(
-                                fontSize = 20.sp, // Kích thước chữ (24sp)
-                                color = Color.White, // Màu chữ
-                                fontWeight = FontWeight.SemiBold // Trọng lượng chữ (in đậm)
+                                fontSize = 20.sp,
+                                color = Color.White,
+                                fontWeight = FontWeight.SemiBold
                             )
                         )
                     }
@@ -133,7 +133,7 @@ fun TopBackground() {
                         scaleY = 1.4f,
                         rotationY = 180f
                     ),
-                colorFilter = ColorFilter.tint(Color(0xFFFFA500)) // Mã màu cho màu cam (orange)
+                colorFilter = ColorFilter.tint(Color(0xFFFFA500))
             )
             Text(
                 text = "THINGS \nThe App",
@@ -163,7 +163,7 @@ fun BottomBackground(modifier: Modifier) {
                     scaleY = 1.7f,
                     rotationX = 180f
                 ),
-            colorFilter = ColorFilter.tint(Color(0xFFFFA500)) // Mã màu cho màu cam (orange)
+            colorFilter = ColorFilter.tint(Color(0xFFFFA500)) 
         )
     }
 }
