@@ -1,8 +1,10 @@
 package eu.tutorial.thingtheapp
 
+import android.graphics.LinearGradient
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,13 +19,17 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -55,7 +61,7 @@ fun MainContent() {
     Column(modifier = Modifier.fillMaxSize()) {
         TopBackground()
         ListOfUser(modifier = Modifier.weight(1f))
-        BottomBackground(modifier = Modifier.offset(0.dp,25.dp))
+        BottomBackground(modifier = Modifier.offset(0.dp,15.dp))
     }
 }
 
@@ -96,6 +102,15 @@ fun ListOfUser(modifier: Modifier) {
                 }
 
             }
+            Box(modifier = Modifier.fillMaxSize() .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        Color.Transparent,
+                        Color.White
+                    )
+                )
+            ))
         }
 }
 
@@ -134,17 +149,18 @@ fun TopBackground() {
 @Composable
 fun BottomBackground(modifier: Modifier) {
     Surface(modifier = modifier
-        .padding(bottom = 10.dp)) {
+        .padding(bottom = 10.dp)
+        .background(Color.White)) {
         Image(
             painter = painterResource(id = R.drawable.background),
             contentDescription = null,
             modifier = modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(150.dp)
                 .offset((20).dp, 40.dp)
                 .graphicsLayer(
                     scaleX = 1.7f,
-                    scaleY = 1.5f,
+                    scaleY = 1.7f,
                     rotationX = 180f
                 ),
             colorFilter = ColorFilter.tint(Color(0xFFFFA500)) // Mã màu cho màu cam (orange)
