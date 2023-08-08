@@ -40,89 +40,63 @@ import eu.tutorial.thingtheapp.Model.User
 import eu.tutorial.thingtheapp.Network.ApiRepository
 
 @Composable
-fun ListOfUser(modifier: Modifier, isSelected: Boolean, onClick: () -> Unit) {
-    val apiRepo = ApiRepository()
-    val user = produceState<List<User>>(initialValue = emptyList(), producer = {
-        value = apiRepo.getAllUser()
-    } )
-    val selectedItemsState = remember { mutableStateOf<Set<User>>(emptySet()) }
+fun ListOfUser(title: String,modifier: Modifier, isSelected: Boolean, onClick: () -> Unit) {
+//    val apiRepo = ApiRepository()
+//    val user = produceState<List<User>>(initialValue = emptyList(), producer = {
+//        value = apiRepo.getAllUser()
+//    } )
+//    val selectedItemsState = remember { mutableStateOf<Set<User>>(emptySet()) }
 
-    Box(modifier = modifier
-        .height(300.dp)
-        .fillMaxWidth(), contentAlignment = Alignment.Center) {
-        LazyColumn(modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 20.dp)
-            .graphicsLayer {
-                clip = true
-            }) {
-            items(5) { item ->
-
-                Surface(
-                    modifier = modifier
-                        .fillMaxSize(),
-                    color = Color(0xFFFFA500), shape = RoundedCornerShape(9.dp)
-                ) {
-                    Row(horizontalArrangement = Arrangement.Center) {
-                        Text(
-                            item.toString(), modifier = modifier
-                                .clickable {
-                                }
-                                .padding(19.dp)
-                            ,
-                            textAlign = TextAlign.Center,
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                color = Color.White,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                        )
-                        Box(contentAlignment = Alignment.Center,
-                            modifier = Modifier.padding(20.dp)) {
-                            if (isSelected) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.checked),
-                                    colorFilter = ColorFilter.tint(
-                                        Color.Gray
-                                    ),
-                                    contentDescription = "",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier
-                                        .height(25.dp)
-                                        .width(25.dp)
-                                        .padding()
-                                )
-                            } else {
-                                Box() {}
-                            }
-
+    Box() {
+        Surface(modifier = modifier
+            .height(65.dp)
+            .fillMaxWidth(),
+            color = Color(0xFFFFA500), shape = RoundedCornerShape(9.dp)
+        ) {
+            Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
+                Text(
+                    title, modifier = modifier
+                        .clickable {
                         }
-                    }
-
-
-                }
-                Spacer(modifier = Modifier.height(15.dp))
-            }
-
-        }
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.Transparent,
-                        Color.Transparent,
-                        Color.White
+                        .padding(19.dp)
+                    ,
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
                     )
                 )
-            ))
+
+                Box(contentAlignment = Alignment.Center,
+                    modifier = Modifier.padding(20.dp)) {
+                    if (isSelected) {
+                        Image(
+                            painter = painterResource(id = R.drawable.checked),
+                            colorFilter = ColorFilter.tint(
+                                Color.Gray
+                            ),
+                            contentDescription = "",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .height(25.dp)
+                                .width(25.dp)
+                                .padding()
+                        )
+                    } else {
+                        Box() {}
+                    }
+
+                }
+            }
+        }
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun PreviewList() {
 
-     ListOfUser(modifier = Modifier, isSelected = false, onClick = {})
+     ListOfUser(title = "hahahahaha",modifier = Modifier, isSelected = true, onClick = {})
 
 
 }

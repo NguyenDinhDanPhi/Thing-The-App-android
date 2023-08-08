@@ -72,12 +72,36 @@ class MainActivity : ComponentActivity() {
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun MainContent() {
+    val apiRepo = ApiRepository()
+    val user = produceState<List<User>>(initialValue = emptyList(), producer = {
+        value = apiRepo.getAllUser()
+    } )
     Column(modifier = Modifier.fillMaxSize()) {
         val selectedItemsState = remember { mutableStateOf<Set<User>>(emptySet()) }
         TopBackground()
-        ListOfUser(modifier = Modifier.weight(1f), isSelected = true, onClick = {
-            if () {}
-        })
+        Box(modifier = Modifier.weight(1f)) {
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(20.dp),
+                modifier = Modifier
+                    .height(400.dp)
+                    .padding(horizontal = 10.dp)) {
+                items(user.value) { item ->
+                    ListOfUser(title = item.login,modifier = Modifier, isSelected = true, onClick = {
+
+                    })
+                }
+            }
+            Box(modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        Color.Transparent,
+                        Color.White
+                    )
+                )
+            ))
+        }
         BottomBackground(modifier = Modifier.offset(0.dp,15.dp))
     }
 }
