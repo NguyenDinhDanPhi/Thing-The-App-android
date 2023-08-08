@@ -76,31 +76,46 @@ fun MainContent() {
     val user = produceState<List<User>>(initialValue = emptyList(), producer = {
         value = apiRepo.getAllUser()
     } )
+    val selectedItemsState = remember { mutableSetOf<User>() }
+    val showTicked = remember {
+        mutableStateOf(false)
+    }
+
     Column(modifier = Modifier.fillMaxSize()) {
-        val selectedItemsState = remember { mutableStateOf<Set<User>>(emptySet()) }
         TopBackground()
         Box(modifier = Modifier.weight(1f)) {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(20.dp),
                 modifier = Modifier
                     .height(400.dp)
                     .padding(horizontal = 10.dp)) {
-                items(user.value) { item ->
-                    ListOfUser(title = item.login,modifier = Modifier, isSelected = true, onClick = {
+                items(user.value) { user ->
+                    Log.d("test113","a ${showTicked.value}")
+                    ListOfUser(title = user.login,modifier = Modifier,
+                        isSelected = selectedItemsState.contains(user),
+                        onClick = {
+                            showTicked.value = selectedItemsState.contains(user)
+                            if (selectedItemsState.contains(user)) {
+                            selectedItemsState.remove(user)
+                        } else {
+                            selectedItemsState.add(user)
+
+                        }
+                            showTicked.value = selectedItemsState.contains(user)
 
                     })
                 }
             }
             Box(modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.Transparent,
-                        Color.Transparent,
-                        Color.White
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Transparent,
+                            Color.White
+                        )
                     )
-                )
-            ))
+                ))
         }
         BottomBackground(modifier = Modifier.offset(0.dp,15.dp))
     }
