@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import eu.tutorial.thingtheapp.R
 
@@ -37,7 +38,7 @@ fun BottomBackground(modifier: Modifier) {
                     .offset((20).dp, 40.dp)
                     .graphicsLayer(
                         scaleX = 1.7f,
-                        scaleY = 1.7f,
+                        scaleY = 1.6f,
                         rotationX = 180f
                     ),
                 colorFilter = ColorFilter.tint(Color(0xFFFFA500))
@@ -45,4 +46,9 @@ fun BottomBackground(modifier: Modifier) {
 
         }
     }
+}
+@Preview
+@Composable
+fun Preview() {
+    BottomBackground(modifier = Modifier)
 }
