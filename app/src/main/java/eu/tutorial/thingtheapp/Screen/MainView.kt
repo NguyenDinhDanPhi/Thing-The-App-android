@@ -93,7 +93,7 @@ fun MainContent(
                 colors = ButtonDefaults.buttonColors( Color(0xFFB87333))
 
                 ,onClick = {
-                    navController.navigate(route = ScreenManager.DisplayUserChosen.route)
+                    navController.navigate(route = "${ScreenManager.DisplayUserChosen.route}/${userChosen}")
                 }) {
                 Text(text = "Next", color = Color.Black)
             }

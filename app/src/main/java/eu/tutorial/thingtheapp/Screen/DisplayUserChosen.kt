@@ -32,7 +32,8 @@ import eu.tutorial.thingtheapp.Screen.SubView.BottomBackground
 import eu.tutorial.thingtheapp.Screen.SubView.TopBackground
 
 @Composable
-fun DisplayUserChosenContent(userSet: Set<User>){
+fun DisplayUserChosenContent(userSet: Set<User>?){
+    Log.d("testt","${userSet}")
     Surface(modifier = Modifier.fillMaxSize()) {
 
         Column {

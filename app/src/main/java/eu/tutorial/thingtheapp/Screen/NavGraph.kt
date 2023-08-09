@@ -27,10 +27,10 @@ fun SetupNavGraph(
                     )
         ){
                 backStackEntry ->
-            val userSetNameArray = backStackEntry.arguments?.getStringArray("name")
+            val userSetNameArray = backStackEntry.arguments?.getStringArray("user")
             val userSet = userSetNameArray?.map { name ->
                 User(login = name)
-            }?.toSet() ?: emptySet()
+            }?.toSet()
 
             DisplayUserChosenContent(userSet = userSet)
         }
