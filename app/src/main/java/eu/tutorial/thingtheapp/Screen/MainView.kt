@@ -35,6 +35,7 @@ import eu.tutorial.thingtheapp.Screen.SubView.TopBackground
 fun MainContent(
     navController: NavController
 ) {
+    var userChosen: Set<User> = emptySet()
     val apiRepo = ApiRepository()
     val user = produceState<List<User>>(initialValue = emptyList(), producer = {
         value = apiRepo.getAllUser()
@@ -64,7 +65,8 @@ fun MainContent(
 
                             }
                             showTicked.value = selectedItemsState.contains(user)
-
+                            userChosen = selectedItemsState
+                            Log.d("test","user ${userChosen}")
                         })
                 }
             }
