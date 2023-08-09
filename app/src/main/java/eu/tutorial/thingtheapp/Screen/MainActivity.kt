@@ -38,6 +38,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import eu.tutorial.thingtheapp.Model.User
 import eu.tutorial.thingtheapp.Network.ApiRepository
 import eu.tutorial.thingtheapp.R
@@ -46,66 +48,14 @@ import eu.tutorial.thingtheapp.Screen.SubView.TopBackground
 
 import eu.tutorial.thingtheapp.ui.theme.ThingTheAppTheme
 class MainActivity : ComponentActivity() {
+    lateinit var navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ThingTheAppTheme {
-                MainContent()
+                navController = rememberNavController()
+                SetupNavGraph(navController = navController)
             }
         }
     }
 }
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun MainContent() {
-    val apiRepo = ApiRepository()
-    val user = produceState<List<User>>(initialValue = emptyList(), producer = {
-        value = apiRepo.getAllUser()
-    } )
-    val selectedItemsState = remember { mutableSetOf<User>() }
-    val showTicked = remember {
-        mutableStateOf(false)
-    }
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopBackground()
-        Box(modifier = Modifier.weight(1f)) {
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(20.dp),
-                modifier = Modifier
-                    .height(400.dp)
-                    .padding(horizontal = 10.dp)) {
-                items(user.value) { user ->
-                    Log.d("test113","a ${showTicked.value}")
-                    ListOfUser(title = user.login,modifier = Modifier,
-                        isSelected = selectedItemsState.contains(user),
-                        onClick = {
-                            showTicked.value = selectedItemsState.contains(user)
-                            if (selectedItemsState.contains(user)) {
-                            selectedItemsState.remove(user)
-                        } else {
-                            selectedItemsState.add(user)
-
-                        }
-                            showTicked.value = selectedItemsState.contains(user)
-
-                    })
-                }
-            }
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Transparent,
-                            Color.White
-                        )
-                    )
-                ))
-        }
-        BottomBackground(modifier = Modifier.offset(0.dp,15.dp))
-    }
-}
-
-
-@Preview

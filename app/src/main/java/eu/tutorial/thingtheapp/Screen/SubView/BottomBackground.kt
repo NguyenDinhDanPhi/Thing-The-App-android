@@ -42,17 +42,7 @@ fun BottomBackground(modifier: Modifier) {
                     ),
                 colorFilter = ColorFilter.tint(Color(0xFFFFA500))
             )
-            Button(modifier = Modifier
-                .padding(10.dp)
-                .offset(230.dp, y = 60.dp)
-                .height(50.dp)
-                .width(140.dp),
-                shape = RoundedCornerShape(7.dp),
-                colors = ButtonDefaults.buttonColors( Color(0xFFB87333))
 
-                ,onClick = { /*TODO*/ }) {
-                Text(text = "Next", color = Color.Black)
-            }
         }
     }
 }
