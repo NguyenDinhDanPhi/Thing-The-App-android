@@ -97,7 +97,7 @@ fun DisplayUserChosenContent(navController: NavController, userSet: Set<User>?){
                             if (count.value > 0) {
                                 Text(text = "${count.value}",
                                     color = Color.White,
-                                    textAlign = TextAlign.Center, fontSize = 18.sp)
+                                    textAlign = TextAlign.Center, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                             } else {
                                 Text(text = userSelected,
                                     color = Color.White,
