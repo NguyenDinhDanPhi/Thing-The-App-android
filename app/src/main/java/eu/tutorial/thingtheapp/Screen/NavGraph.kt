@@ -1,5 +1,6 @@
 package eu.tutorial.thingtheapp.Screen
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -32,7 +33,7 @@ fun SetupNavGraph(
                 User(login = name)
             }?.toSet()
 
-            DisplayUserChosenContent(userSet = userSet)
+            DisplayUserChosenContent(navController = navController,userSet = userSet)
         }
     }
 }
